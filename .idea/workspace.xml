@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08159f72-4c97-4602-9a23-de5ea0c93159" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/JusoAPIService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PatternDefine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/juso_varchar.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_8_8.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_8_2.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AdministrativeDistrict.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FindCorrectAddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FindCorrectAddressService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/juso_data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/juso_data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/truefriedn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/truefriedn.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,9 +29,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$USER_HOME$/AppData/Local/Temp/Temp1_guideSearchApi.zip/apiSampleJSONController.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -44,7 +43,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/JAVA_PROJECT/gson-2.8.2.jar",
+    "last_opened_file_path": "D:/jar/gson-2.8.8.jar",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
