@@ -20,12 +20,13 @@ public class FindCorrectAddressService {
 
         // 특수문자 제거
         address = address.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9, ]", "");
+        address = address.replaceAll("  ", " ");
         String[] arg = address.split(" ");  // 공백으로 split
         boolean continueFlag = false;
 
         // 1글자 문자병합
         for (String a : arg) {
-            if ((a.length() == 1)) {
+            if ((a.length() == 1) || (isInteger(a))) {
                 parseAddress += !continueFlag ? " " + a : a;
                 continueFlag = true;
             } else {
@@ -34,6 +35,15 @@ public class FindCorrectAddressService {
             }
         }
         return parseAddress;
+    }
+
+    public boolean isInteger(String strValue) {
+        try {
+            Integer.parseInt(strValue);
+            return true;
+        } catch (NumberFormatException ex) {
+            return false;
+        }
     }
 
     public String findJuso(String address) throws IOException {
@@ -62,7 +72,9 @@ public class FindCorrectAddressService {
         Stack<String> addressList = new Stack<>();
         address = setAddress(address);
 
-        String regx = "[가-힣\\d]+(?:로|길)";
+        System.out.println(address);
+        String regx = "[가-힣\\d]+(?:로|길)+(?:\\s+)+(?:\\d*)";
+//        String regx = "[가-힣\\d]+(?:로|길)";
         Matcher matcher = Pattern.compile(regx).matcher(address);
 
         while (matcher.find()) {

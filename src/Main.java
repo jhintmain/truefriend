@@ -1,6 +1,3 @@
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -8,27 +5,16 @@ import java.util.stream.Collectors;
 
 public class Main {
 
-
-
-    public static Collection<List<String>> partition(Stack<String> stack) {
-        final List<String> address = new ArrayList(stack);
-        final int chunkSize = stack.size() / 4;
-        System.out.println(chunkSize);
-        final AtomicInteger counter = new AtomicInteger();
-        final Collection<List<String>> result = address.stream()
-                .collect(Collectors.groupingBy(it -> counter.getAndIncrement() / chunkSize))
-                .values();
-        return result;
-    }
-
     public static void main(String[] args) throws IOException {
 
+        // 시작시간
         String start_time = String.valueOf(new Date());
 
+        // 주소 목록 stack 저장 > 데이터 파일에서 읽어서 저장
         Stack<String> stackAddress = new Stack<>();
 
         try {
-            // 주소 목록 읽기 약 3만건
+            // 주소 목록 읽기 (약 3만건 테스트 데이터)
             File file = new File("src/data/juso_data_api.txt");
             FileReader filereader = new FileReader(file);
             BufferedReader bufReader = new BufferedReader(filereader);
@@ -37,35 +23,40 @@ public class Main {
 
             while ((line = bufReader.readLine()) != null) {
                 String[] rgAddress = line.split("\\|");
-                for (int i = 0; i < rgAddress.length; i++) {
-//                for (int i = 0; i < 10000; i++) {
+//                for (int i = 0; i < rgAddress.length; i++) {
+                for (int i = 0; i < 10; i++) {
                     String address = rgAddress[i];
                     stackAddress.add(address);
                 }
             }
             bufReader.close();
 
-
-            System.out.println("================HASH SET ======================");
-            Iterator<String> iterator = stackAddress.iterator();
-            System.out.println(stackAddress.size());
-            while (iterator.hasNext()) {
-                System.out.print(iterator.next() + "|");
-            }
+            // 주소 목록 데이터 건수 확인
+            System.out.println("================ STACK  ======================");
+//            Iterator<String> iterator = stackAddress.iterator();
+            System.out.println("Total Address Count :"+stackAddress.size());
+//            while (iterator.hasNext()) {
+//                System.out.print(iterator.next() + "|");
+//            }
 
             System.out.println("================PARTITION ======================");
 
+            // 매칭 결과 파일 생성
             File file_result = new File("src/data/juso_data_result_single.txt"); // File객체 생성
             if (!file_result.exists()) { // 파일이 존재하지 않으면
                 file_result.createNewFile(); // 신규생성
             }
             BufferedWriter writer = new BufferedWriter(new FileWriter(file_result, true));
 
+            // 주소 목록 파티셔닝 후 병령 처리
             partition(stackAddress).parallelStream().forEach(addressList -> {
 
-
+                // 도로명 검색후 실존재 도로명 확인된 문자열은 hash에 저장해 두고 같은 도로명시 api skip할 수 있게 한다.
                 HashSet<String> set = new HashSet<>();
+
                 boolean find_flag = false;
+
+                // 도로명 검색
                 FindCorrectAddressService findCorrectAddressService = new FindCorrectAddressService();
 
                 for (String address : addressList) {
@@ -103,7 +94,7 @@ public class Main {
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
-                            System.out.println("[" + Thread.currentThread().getName() + "]" + stack_address.toString() + address + " : " + addr);
+                            System.out.println("[" + Thread.currentThread().getName() + "]" + stack_address.toString() + address + " : " + findAddr);
                             find_flag = true;
                             break;
                         } else {
@@ -153,6 +144,15 @@ public class Main {
 
     }
 
+    public static Collection<List<String>> partition(Stack<String> stack) {
+        final List<String> address = new ArrayList<>(stack);
+        final int chunkSize = stack.size() / 1;
+        final AtomicInteger counter = new AtomicInteger();
+        final Collection<List<String>> result = address.stream()
+                .collect(Collectors.groupingBy(it -> counter.getAndIncrement() / chunkSize))
+                .values();
+        return result;
+    }
 
 //    public static void main(String[] args) throws IOException {
 //
