@@ -1,3 +1,5 @@
+package truefriend.com.address.service;
+
 import com.google.gson.JsonArray;
 
 import java.io.IOException;
@@ -19,8 +21,8 @@ public class FindCorrectAddressService {
         String parseAddress = "";
 
         // 특수문자 제거
+        address = address.replaceAll("\\s{2,}", " ");
         address = address.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9, ]", "");
-        address = address.replaceAll("  ", " ");
         String[] arg = address.split(" ");  // 공백으로 split
         boolean continueFlag = false;
 
@@ -73,14 +75,14 @@ public class FindCorrectAddressService {
         address = setAddress(address);
 
         System.out.println(address);
-        String regx = "[가-힣\\d]+(?:로|길)+(?:\\s+)+(?:\\d*)";
-//        String regx = "[가-힣\\d]+(?:로|길)";
+//        String regx = "[가-힣\\d]+(?:로|길)+(?:\\s+)+(?:\\d*)";
+        String regx = "[가-힣\\d]+(?:로|길)";
         Matcher matcher = Pattern.compile(regx).matcher(address);
 
         while (matcher.find()) {
             // 예외처리 1 - 종로/ 구로는 통과
-            if (checkException(matcher.group())) {
-                addressList.push(matcher.group());
+            if (checkException(matcher.group().trim())) {
+                addressList.push(matcher.group().trim());
             }
         }
         return addressList;
@@ -94,7 +96,7 @@ public class FindCorrectAddressService {
      * @param address
      */
     // 주소 필터 2 - 정규식 이용
-    public Stack<String> addressFilter2(String address) {
+    /*public Stack<String> addressFilter2(String address) {
 
         Stack<String> addressList = new Stack<>();
         address = setAddress(address);
@@ -110,7 +112,7 @@ public class FindCorrectAddressService {
         }
 
         return addressList;
-    }
+    }*/
 
     /**
      * 로/길 정규식 예외 처리

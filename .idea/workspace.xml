@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08159f72-4c97-4602-9a23-de5ea0c93159" name="Changes" comment="2023-02-27 - 1">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_8_8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_8_8.xml" afterDir="false" />
+    <list default="true" id="08159f72-4c97-4602-9a23-de5ea0c93159" name="Changes" comment="2023-02-28 - 예외처리 추가">
+      <change afterPath="$PROJECT_DIR$/src/truefriend/com/address/vo/JusoApiResult.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FindCorrectAddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FindCorrectAddressService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/juso_data_api.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/juso_data_api.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FindCorrectAddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/truefriend/com/address/service/FindCorrectAddressService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JusoAPIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/truefriend/com/address/service/JusoAPIService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/truefriend/com/address/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +46,8 @@
     &quot;last_opened_file_path&quot;: &quot;C:/JAVA_PROJECT/gson-2.8.2.jar&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -64,6 +65,14 @@
       <option name="presentableId" value="Default" />
       <updated>1677303800399</updated>
     </task>
+    <task id="LOCAL-00001" summary="2023-02-28 - 예외처리 추가">
+      <created>1677570948288</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1677570948288</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -76,5 +85,13 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="2023-02-28 - 예외처리 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="2023-02-28 - 예외처리 추가" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
