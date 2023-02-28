@@ -7,15 +7,23 @@ import java.util.regex.Pattern;
 
 public class FindCorrectAddressService {
 
+    /**
+     * 주소 양식 다듬기
+     * 1. 한글,영어,숫자,콤마(,)이외 특수문자 제거
+     * 2. 1글자로된 문자열 병합
+     *
+     * @param address
+     */
     public String setAddress(String address) {
 
         String parseAddress = "";
 
-        address = address.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9,() ]", "");    // 특수문자 제거
+        // 특수문자 제거
+        address = address.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9, ]", "");
         String[] arg = address.split(" ");  // 공백으로 split
         boolean continueFlag = false;
 
-        // 1글자 문자는 붙여준다
+        // 1글자 문자병합
         for (String a : arg) {
             if ((a.length() == 1)) {
                 parseAddress += !continueFlag ? " " + a : a;
@@ -42,24 +50,13 @@ public class FindCorrectAddressService {
         return rn;
     }
 
+    /**
+     * 도로명 찾는 정규식함수 - 1
+     * - 로/길 포함된 문자열
+     *
+     * @param address
+     */
     // 주소 필터 1 - 정규식 이용
-    public Stack<String> addressFilter2(String address) {
-
-        Stack<String> addressList = new Stack<>();
-        String regx = PatternDefine.PATTERN_ROAD;
-        address = setAddress(address);
-
-        Matcher matcher = Pattern.compile(regx).matcher(address);
-        while (matcher.find()) {
-            // 예외처리 1 - 종로/ 구로는 통과
-            if(checkException(matcher.group())){
-                addressList.push(matcher.group());
-            }
-        }
-
-        return addressList;
-    }
-
     public Stack<String> addressFilter1(String address) {
 
         Stack<String> addressList = new Stack<>();
@@ -70,21 +67,53 @@ public class FindCorrectAddressService {
 
         while (matcher.find()) {
             // 예외처리 1 - 종로/ 구로는 통과
-            if(checkException(matcher.group())){
+            if (checkException(matcher.group())) {
                 addressList.push(matcher.group());
             }
         }
         return addressList;
     }
 
+
+    /**
+     * 도로명 찾는 정규식함수 - 2
+     * - 로/길 포함된 문자열
+     *
+     * @param address
+     */
+    // 주소 필터 2 - 정규식 이용
+    public Stack<String> addressFilter2(String address) {
+
+        Stack<String> addressList = new Stack<>();
+        address = setAddress(address);
+
+        String regx = PatternDefine.PATTERN_ROAD;
+        Matcher matcher = Pattern.compile(regx).matcher(address);
+
+        while (matcher.find()) {
+            // 예외처리 1 - 종로/ 구로는 통과
+            if (checkException(matcher.group())) {
+                addressList.push(matcher.group());
+            }
+        }
+
+        return addressList;
+    }
+
+    /**
+     * 로/길 정규식 예외 처리
+     * - 행정구역중 로 or 길 로끝나는 곳이 두곳. 종로/구로
+     *
+     * @param findAddress
+     */
     public boolean checkException(String findAddress) {
-        String[] rgExceptLo = {"종로","구로"};
-        for(String lo : rgExceptLo){
-            if(findAddress.equals(lo)){
+        String[] rgExceptLo = {"종로", "구로"};
+        for (String lo : rgExceptLo) {
+            if (findAddress.equals(lo)) {
                 return false;
             }
         }
-       return true;
+        return true;
     }
 
 }
