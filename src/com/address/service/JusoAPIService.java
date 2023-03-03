@@ -2,7 +2,7 @@ package com.address.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.address.service.vo.JusoApiResultParser;
+import com.address.service.dto.JusoApiResultParser;
 
 import java.io.*;
 import java.net.URL;

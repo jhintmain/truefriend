@@ -27,8 +27,8 @@ public class JusoFileService {
 
         while ((line = bufReader.readLine()) != null) {
             String[] lineData = line.split("\\|");
-            for (int i = 0; i < lineData.length; i++) {
-//            for (int i = 0; i < 100; i++) {
+//            for (int i = 0; i < lineData.length; i++) {
+            for (int i = 0; i < 100; i++) {
                 String address = lineData[i];
                 addressList.add(address);
             }

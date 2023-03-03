@@ -27,13 +27,6 @@ public class Main {
             // 파일쓰기버퍼 객체 생성
             jusoFileService.makeBufferedWriter();
 
-            // 주소 목록 데이터 건수 확인
-            jusoFileService.writer("============================ LIST ============================");
-            jusoFileService.writer("Total Address Count :" + totalAddressList.size());
-            jusoFileService.writer("==============================================================");
-            jusoFileService.writer("[로/길매칭된 문자 List] 주소(오리지널) : 최종결과(도/로)");
-            jusoFileService.writer("==============================================================");
-
             // 주소 목록 파티셔닝 후 병렬 처리
             partition(totalAddressList).parallelStream().forEach(addressList -> {
 
@@ -59,7 +52,8 @@ public class Main {
                         // 1. HashSet에 같은 도로명 있는지 확인, 존재시 api 보내지 않는다 > HashSet에는 API응닶값이 존재하는 데이터만 존재
                         if (set.contains(filterAddress)) {
                             try {
-                                jusoFileService.writer(stackFilterAddress + originalAddress + " : " + filterAddress + "(hash)");
+                                jusoFileService.writer("입력 : " + originalAddress);
+                                jusoFileService.writer("출력 : " + filterAddress + "(hash)");
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
@@ -74,14 +68,15 @@ public class Main {
                             throw new RuntimeException(e);
                         }
                         if (!findAddress.equals("")) {
-                            if(!findAddress.equals(filterAddress)){
+                            if (!findAddress.equals(filterAddress)) {
                                 char c = filterAddress.charAt(filterAddress.length() - 1);
-                                findAddress = findAddress.substring(0, findAddress.indexOf(c)+1);
+                                findAddress = findAddress.substring(0, findAddress.indexOf(c) + 1);
                                 findAddress = findAddress.length() < filterAddress.length() ? findAddress : filterAddress;
                             }
                             set.add(findAddress);
                             try {
-                                jusoFileService.writer(stackFilterAddress + originalAddress + " : " + findAddress);
+                                jusoFileService.writer("입력 : " + originalAddress);
+                                jusoFileService.writer("출력 : " + findAddress);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
@@ -100,18 +95,18 @@ public class Main {
                         if (!findAddress.equals("")) {
                             set.add(findAddress);
                             try {
-                                jusoFileService.writer(stackFilterAddress + originalAddress + " : " + findAddress);
+                                jusoFileService.writer("입력 : " + originalAddress);
+                                jusoFileService.writer("출력 : " + findAddress);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
                         } else {
-                            String alert = (stackFilterAddress.size() < 1) ? "정확한 로/길을 찾지 못했습니다" : "매칭되는 로/길을 찾지 못했습니다";
                             try {
-                                jusoFileService.writer(stackFilterAddress + originalAddress + " : " + alert);
+                                jusoFileService.writer("입력 : " + originalAddress);
+                                jusoFileService.writer("출력 : "+stackFilterAddress);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
-
                         }
                     }
                 }
@@ -119,10 +114,12 @@ public class Main {
             });
 
 
-            jusoFileService.writer("================ TIME REPORT =================");
+            // REPORT
+            jusoFileService.writer("==========================  REPORT ========================");
+            jusoFileService.writer("Total Address Count :" + totalAddressList.size());
             String end_time = String.valueOf(new Date());
-            jusoFileService.writer("[START]"+startTime);
-            jusoFileService.writer("[END]"+end_time);
+            jusoFileService.writer("[START]" + startTime);
+            jusoFileService.writer("[END]" + end_time);
 
             jusoFileService.close();
 
@@ -137,7 +134,7 @@ public class Main {
     // 데이터 파티셔닝 처리
     public static Collection<List<String>> partition(List<String> stack) {
         final List<String> address = new ArrayList<>(stack);
-        final int chunkSize = stack.size() / 20;
+        final int chunkSize = stack.size() / 16;
         final AtomicInteger counter = new AtomicInteger();
         return address.stream()
                 .collect(Collectors.groupingBy(it -> counter.getAndIncrement() / chunkSize))

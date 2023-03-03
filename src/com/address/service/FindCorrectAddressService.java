@@ -1,6 +1,6 @@
 package com.address.service;
 
-import com.address.service.vo.JusoApiResultParser;
+import com.address.service.dto.JusoApiResultParser;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -51,7 +51,7 @@ public class FindCorrectAddressService {
         // 주소 API 호출
         JusoAPIService jusoApiService = new JusoAPIService();
         String jsonResult = jusoApiService.callJusoAPI(address);
-        JusoApiResultParser jusoApiResultParser =  jusoApiService.parseJuso(jsonResult);
+        JusoApiResultParser jusoApiResultParser = jusoApiService.parseJuso(jsonResult);
 
         return (jusoApiResultParser.getResult().getCommon().getTotalCount() > 0) ? jusoApiResultParser.getResult().getJuso().get(0).getRn() : "";
     }
@@ -66,6 +66,10 @@ public class FindCorrectAddressService {
         Stack<String> addressList = new Stack<>();
         address = setAddress(address);
 
+        if (address.isEmpty()) {
+            return addressList;
+        }
+
 //        String regx = "[가-힣\\d]+(?:로|길)+(?:\\s+)+(?:\\d*)";
         String regx = "[가-힣\\d]+(?:로|길)";
         Matcher matcher = Pattern.compile(regx).matcher(address);
@@ -76,6 +80,19 @@ public class FindCorrectAddressService {
                 addressList.push(matcher.group().trim());
             }
         }
+
+        if (addressList.empty()) {
+            int lo_or_gil_idx = Math.max(address.lastIndexOf("로"), address.lastIndexOf("길"));
+            if (lo_or_gil_idx != -1) {
+                String arg[] = address.split(" ");
+                for (String findLoGil : arg) {
+                    if (findLoGil.length() > 0 && (findLoGil.charAt(findLoGil.length() - 1) == '로' || findLoGil.charAt(findLoGil.length() - 1) == '길')) {
+                        addressList.push(findLoGil.trim());
+                    }
+                }
+            }
+        }
+        
         return addressList;
     }
 

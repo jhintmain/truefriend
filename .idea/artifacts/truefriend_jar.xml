@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="truefriend:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/truefriend_jar</output-path>
+    <root id="archive" name="truefriend.jar">
+      <element id="module-output" name="truefriend" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/com/address/jars/gson-2.10.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/com/address/jars/jackson-core-2.14.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/com/address/jars/jackson-databind-2.14.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/com/address/jars/jackson-annotations-2.14.2.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

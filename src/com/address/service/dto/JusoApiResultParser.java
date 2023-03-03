@@ -1,4 +1,4 @@
-package com.address.service.vo;
+package com.address.service.dto;
 
 import java.util.List;
 
