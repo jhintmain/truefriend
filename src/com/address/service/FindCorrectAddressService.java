@@ -1,6 +1,6 @@
-package truefriend.com.address.service;
+package com.address.service;
 
-import truefriend.com.address.vo.JusoApiResultParser;
+import com.address.service.vo.JusoApiResultParser;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -13,6 +13,7 @@ public class FindCorrectAddressService {
      * 주소 양식 다듬기
      * 1. 한글,영어,숫자,콤마(,)이외 특수문자 제거
      * 2. 1글자로된 문자열 병합
+     * 3. 숫자는 앞 문자열과 병합
      */
     public String setAddress(String address) {
 
@@ -56,18 +57,15 @@ public class FindCorrectAddressService {
     }
 
     /**
-     * 도로명 찾는 정규식함수 - 1
+     * 도로명 찾는 정규식함수
      * - 로/길 포함된 문자열
-     *
-     * @param address
      */
     // 주소 필터 1 - 정규식 이용
-    public Stack<String> addressFilter1(String address) {
+    public Stack<String> addressFilter(String address) {
 
         Stack<String> addressList = new Stack<>();
         address = setAddress(address);
 
-        System.out.println(address);
 //        String regx = "[가-힣\\d]+(?:로|길)+(?:\\s+)+(?:\\d*)";
         String regx = "[가-힣\\d]+(?:로|길)";
         Matcher matcher = Pattern.compile(regx).matcher(address);
@@ -78,27 +76,6 @@ public class FindCorrectAddressService {
                 addressList.push(matcher.group().trim());
             }
         }
-        return addressList;
-    }
-
-    // 주소 필터 2 - 정규식 이용
-    public Stack<String> addressFilter3(String address) {
-
-        Stack<String> addressList = new Stack<>();
-        address = setAddress(address);
-
-        System.out.println(address);
-
-        String regx = PatternDefine.PATTERN_ROAD;
-        Matcher matcher = Pattern.compile(regx).matcher(address);
-
-        while (matcher.find()) {
-            // 예외처리 1 - 종로/ 구로는 통과
-            if (checkException(matcher.group())) {
-                addressList.push(matcher.group());
-            }
-        }
-
         return addressList;
     }
 

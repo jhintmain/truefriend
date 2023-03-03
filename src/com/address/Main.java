@@ -1,8 +1,8 @@
-package truefriend.com.address;
+package com.address;
 
-import truefriend.com.address.service.JusoFileService;
-import truefriend.com.address.service.FindCorrectAddressService;
-import truefriend.com.address.service.JusoAPIService;
+import com.address.service.FindCorrectAddressService;
+import com.address.service.JusoAPIService;
+import com.address.service.JusoFileService;
 
 import java.io.*;
 import java.util.*;
@@ -19,17 +19,20 @@ public class Main {
         // 주소 목록 read/write 관련 서비스 객체 선언
         JusoFileService jusoFileService = new JusoFileService();
 
-        // 주소 목록 읽고 totalAddressList 에 저장.
+        // 주소 목록 읽어 List에 저장.
+        jusoFileService.setJusoDataListPath("src/data/juso_data_list.txt");
         List<String> totalAddressList = jusoFileService.readList();
 
         try {
-
             // 파일쓰기버퍼 객체 생성
             jusoFileService.makeBufferedWriter();
 
             // 주소 목록 데이터 건수 확인
-            jusoFileService.writer("============================ LIST ==================================");
+            jusoFileService.writer("============================ LIST ============================");
             jusoFileService.writer("Total Address Count :" + totalAddressList.size());
+            jusoFileService.writer("==============================================================");
+            jusoFileService.writer("[로/길매칭된 문자 List] 주소(오리지널) : 최종결과(도/로)");
+            jusoFileService.writer("==============================================================");
 
             // 주소 목록 파티셔닝 후 병렬 처리
             partition(totalAddressList).parallelStream().forEach(addressList -> {
@@ -46,7 +49,7 @@ public class Main {
                     boolean findFlag = false;
 
                     // 도로명 주소 필터 (로/길)이 포함된 문자열
-                    Stack<String> stackFilterAddress = findCorrectAddressService.addressFilter1(originalAddress);
+                    Stack<String> stackFilterAddress = findCorrectAddressService.addressFilter(originalAddress);
 
                     String findAddress;
 
@@ -56,7 +59,7 @@ public class Main {
                         // 1. HashSet에 같은 도로명 있는지 확인, 존재시 api 보내지 않는다 > HashSet에는 API응닶값이 존재하는 데이터만 존재
                         if (set.contains(filterAddress)) {
                             try {
-                                jusoFileService.writer("[" + Thread.currentThread().getName() + "]" + stackFilterAddress + originalAddress + " : " + filterAddress + "(hash)");
+                                jusoFileService.writer(stackFilterAddress + originalAddress + " : " + filterAddress + "(hash)");
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
@@ -72,13 +75,13 @@ public class Main {
                         }
                         if (!findAddress.equals("")) {
                             if(!findAddress.equals(filterAddress)){
-                                Character c = filterAddress.charAt(filterAddress.length() - 1);
+                                char c = filterAddress.charAt(filterAddress.length() - 1);
                                 findAddress = findAddress.substring(0, findAddress.indexOf(c)+1);
                                 findAddress = findAddress.length() < filterAddress.length() ? findAddress : filterAddress;
                             }
                             set.add(findAddress);
                             try {
-                                jusoFileService.writer("[" + Thread.currentThread().getName() + "]" + stackFilterAddress + originalAddress + " : " + findAddress);
+                                jusoFileService.writer(stackFilterAddress + originalAddress + " : " + findAddress);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
@@ -87,7 +90,7 @@ public class Main {
                         }
                     }
 
-                    // 3. Set에도 API검색에도 없는 경우 > 주소목록 데이터 그대로 한번더 보내본다
+                    // 3. Set에도 API검색에도 없는 경우 > 주소목록 데이터 그대로 한번더 보내본다 (지번주소인경우, 잘못된 파싱으로 못찾을경우)
                     if (!findFlag) {
                         try {
                             findAddress = findCorrectAddressService.findJuso(originalAddress);
@@ -97,14 +100,14 @@ public class Main {
                         if (!findAddress.equals("")) {
                             set.add(findAddress);
                             try {
-                                jusoFileService.writer("[" + Thread.currentThread().getName() + "]" + stackFilterAddress + originalAddress + " : " + findAddress);
+                                jusoFileService.writer(stackFilterAddress + originalAddress + " : " + findAddress);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
                         } else {
                             String alert = (stackFilterAddress.size() < 1) ? "정확한 로/길을 찾지 못했습니다" : "매칭되는 로/길을 찾지 못했습니다";
                             try {
-                                jusoFileService.writer("[" + Thread.currentThread().getName() + "]" + stackFilterAddress + originalAddress + " : " + alert);
+                                jusoFileService.writer(stackFilterAddress + originalAddress + " : " + alert);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
@@ -116,10 +119,10 @@ public class Main {
             });
 
 
-            jusoFileService.writer("========== TIME REPORT ===========");
+            jusoFileService.writer("================ TIME REPORT =================");
             String end_time = String.valueOf(new Date());
-            jusoFileService.writer(startTime);
-            jusoFileService.writer(end_time);
+            jusoFileService.writer("[START]"+startTime);
+            jusoFileService.writer("[END]"+end_time);
 
             jusoFileService.close();
 
@@ -141,13 +144,13 @@ public class Main {
                 .values();
     }
 
-    /** 테스트 주소 데이터 생성시 호출 **/
+    // 테스트 주소 데이터 생성시 호출
     public static void makeTestJusoData() throws IOException {
         JusoAPIService jusoAPIService = new JusoAPIService();
-        jusoAPIService.makeTestJusoData("ㄱㄷㅇ",false);
-        jusoAPIService.makeTestJusoData("ㅂㅅㄱㅇㅅ",true);
-        jusoAPIService.makeTestJusoData("ㄷㄱ",true);
-        jusoAPIService.makeTestJusoData("ㄴㄹㅇ",true);
+        jusoAPIService.makeTestJusoData("ㄱㄷㅇ");
+        jusoAPIService.makeTestJusoData("ㅂㅅㄱㅇㅅ");
+        jusoAPIService.makeTestJusoData("ㄷㄱ");
+        jusoAPIService.makeTestJusoData("ㄴㄹㅇ");
     }
 
 }

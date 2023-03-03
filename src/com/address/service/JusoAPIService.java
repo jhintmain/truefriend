@@ -1,8 +1,8 @@
-package truefriend.com.address.service;
+package com.address.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import truefriend.com.address.vo.JusoApiResultParser;
+import com.address.service.vo.JusoApiResultParser;
 
 import java.io.*;
 import java.net.URL;
@@ -64,15 +64,13 @@ public class JusoAPIService {
 
 
     // 테스트 주소 데이터 셋팅함수
-    public void makeTestJusoData(String address, boolean flag) throws IOException {
+    public void makeTestJusoData(String address) throws IOException {
 
         // 주소 정보 txt로 저장
-        File fileResult = new File("src/data/juso_data_list.txt");
-        if (!fileResult.exists()) { // 파일이 존재하지 않으면
-            fileResult.createNewFile(); // 신규생성
-        }
-        FileWriter fileWriter = new FileWriter(fileResult, flag);
-        BufferedWriter writer = new BufferedWriter(fileWriter);
+        JusoFileService jusoFileService = new JusoFileService();
+
+        jusoFileService.setJusoDataResultPath(jusoFileService.getJusoDataListPath());
+        jusoFileService.makeBufferedWriter();
 
         // writer.write("마포구 도화-2길 코끼리분식|성남, 분당 백 현 로 265 푸른마을 아파트로 보내주세요 !!|");
 
@@ -92,14 +90,12 @@ public class JusoAPIService {
                 List<JusoApiResultParser.InnerResults.InnerJuso> juso = jusoApiResultParser.getResult().getJuso();
                 for (int i = 0; i < juso.size(); i++) {
                     String roadAddr = juso.get(i).getRoadAddr();
-                    System.out.println("[" + currentPage + "/" + i + "]" + roadAddr);
-                    writer.write(roadAddr + "|");
+                    jusoFileService.writerNoNewLine(roadAddr + "|");
                 }
             }
         }
 
-        writer.flush();
-        writer.close();
+        jusoFileService.close();
     }
 
     /**

@@ -1,4 +1,4 @@
-package truefriend.com.address.vo;
+package com.address.service.vo;
 
 import java.util.List;
 

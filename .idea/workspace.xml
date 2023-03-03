@@ -5,22 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08159f72-4c97-4602-9a23-de5ea0c93159" name="Changes" comment="2023-02-28 - 예외처리 추가">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jackson_annotations_2_14_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jackson_core_2_14_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jackson_databind_2_14_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/juso_data_list.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/juso_data_result.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/truefriend/com/address/service/JusoFileService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/truefriend/com/address/vo/JusoApiResultParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_8_8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_10_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jars.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_10_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/jackson_annotations_2_14_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/jackson_core_2_14_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/jackson_databind_2_14_2.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PatternDefine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/truefriend/com/address/service/PatternDefine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/juso_data.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/truefriend/com/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/truefriend/com/address/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/truefriend/com/address/service/FindCorrectAddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/truefriend/com/address/service/FindCorrectAddressService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/truefriend/com/address/service/JusoAPIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/truefriend/com/address/service/JusoAPIService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/truefriend/com/address/vo/JusoApiResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/juso_data_api.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/juso_data_list.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/juso_data_list.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/juso_data_result.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/juso_data_result.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jars/gson-2.10.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/address/jars/gson-2.10.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jars/jackson-annotations-2.14.2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/address/jars/jackson-annotations-2.14.2.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jars/jackson-core-2.14.2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/address/jars/jackson-core-2.14.2.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jars/jackson-databind-2.14.2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/address/jars/jackson-databind-2.14.2.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/truefriend/com/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/address/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/truefriend/com/address/service/FindCorrectAddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/address/service/FindCorrectAddressService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/truefriend/com/address/service/JusoAPIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/address/service/JusoAPIService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/truefriend/com/address/service/JusoFileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/address/service/JusoFileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/truefriend/com/address/service/PatternDefine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/truefriend/com/address/vo/JusoApiResultParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/address/service/vo/JusoApiResultParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/truefriedn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/truefriedn.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +55,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/JAVA study/jackson-annotations-2.14.2.jar",
+    "last_opened_file_path": "D:/Project_True/truefriend/src/jars",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
@@ -62,6 +65,9 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="truefriend.com.address.vo" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Project_True\truefriend\src\jars" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\JAVA_PROJECT\truefriedn\src\data" />
       <recent name="C:\JAVA_PROJECT\truefriedn\src" />
@@ -69,11 +75,11 @@
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="truefriend.com.address.Main" />
+      <option name="MAIN_CLASS_NAME" value="com.address.Main" />
       <module name="truefriedn" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="truefriend.com.address.*" />
+          <option name="PATTERN" value="com.address.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
