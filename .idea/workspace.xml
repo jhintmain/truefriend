@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="truefriend:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08159f72-4c97-4602-9a23-de5ea0c93159" name="Changes" comment="2023-02-28 - 예외처리 추가">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/address/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/address/service/FindCorrectAddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/address/service/FindCorrectAddressService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/address/service/JusoAPIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/address/service/JusoAPIService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/address/service/JusoFileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/address/service/JusoFileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/address/service/vo/JusoApiResultParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/address/service/dto/JusoApiResultParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/juso_data_list.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/juso_data_list.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/juso_data_result.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/juso_data_result.txt" afterDir="false" />
-    </list>
+    <list default="true" id="08159f72-4c97-4602-9a23-de5ea0c93159" name="Changes" comment="2023-03-03 - 코드리펙토링(4)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -98,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677570948288</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="2023-03-03 - 코드리펙토링(4)">
+      <created>1677836444068</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1677836444068</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -115,7 +117,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="2023-02-28 - 예외처리 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="2023-02-28 - 예외처리 추가" />
+    <MESSAGE value="2023-03-03 - 코드리펙토링(4)" />
+    <option name="LAST_COMMIT_MESSAGE" value="2023-03-03 - 코드리펙토링(4)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
