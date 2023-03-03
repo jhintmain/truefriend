@@ -76,13 +76,26 @@
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.address.Main" />
-      <module name="truefriedn" />
+      <module name="truefriend" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.address.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="truefriend" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="truefriend" />
+      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
