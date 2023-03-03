@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08159f72-4c97-4602-9a23-de5ea0c93159" name="Changes" comment="2023-03-03 - 코드리펙토링(4)" />
+    <list default="true" id="08159f72-4c97-4602-9a23-de5ea0c93159" name="Changes" comment="2023-03-03 - 코드 리펙토링" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,7 +39,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "D:/Project_True/truefriend/src/jars",
+    "last_opened_file_path": "C:/JAVA study/truefriend-master",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"

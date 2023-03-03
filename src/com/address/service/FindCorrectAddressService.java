@@ -8,6 +8,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FindCorrectAddressService {
+    private static final char LO = '로';
+    private static final char GIL = '길';
 
     /**
      * 주소 양식 다듬기
@@ -71,7 +73,7 @@ public class FindCorrectAddressService {
         }
 
 //        String regx = "[가-힣\\d]+(?:로|길)+(?:\\s+)+(?:\\d*)";
-        String regx = "[가-힣\\d]+(?:로|길)";
+        String regx = "[가-힣\\d]+(?:"+LO+"|"+GIL+")";
         Matcher matcher = Pattern.compile(regx).matcher(address);
 
         while (matcher.find()) {
@@ -82,17 +84,17 @@ public class FindCorrectAddressService {
         }
 
         if (addressList.empty()) {
-            int lo_or_gil_idx = Math.max(address.lastIndexOf("로"), address.lastIndexOf("길"));
+            int lo_or_gil_idx = Math.max(address.lastIndexOf(LO), address.lastIndexOf(GIL));
             if (lo_or_gil_idx != -1) {
                 String arg[] = address.split(" ");
                 for (String findLoGil : arg) {
-                    if (findLoGil.length() > 0 && (findLoGil.charAt(findLoGil.length() - 1) == '로' || findLoGil.charAt(findLoGil.length() - 1) == '길')) {
+                    if (findLoGil.length() > 0 && (findLoGil.charAt(findLoGil.length() - 1) == LO || findLoGil.charAt(findLoGil.length() - 1) == GIL)) {
                         addressList.push(findLoGil.trim());
                     }
                 }
             }
         }
-        
+
         return addressList;
     }
 
